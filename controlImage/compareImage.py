@@ -1,7 +1,7 @@
 from PIL import Image
 from PIL import ImageChops
 
-def cropImage(image, saveurl):
+def cropImage(image,cropImagePath):
     # 자를 영역 지정 (left, upper, right, lower)
     left = 0
     upper = 76
@@ -9,7 +9,7 @@ def cropImage(image, saveurl):
     lower = 2400
 
     # 이미지 자르기
-    Image.open(image).crop((left, upper, right, lower)).save(saveurl)
+    Image.open(image).crop((left, upper, right, lower)).save(cropImagePath)
 
 def imageSimilarity(image1, image2, threshold=95):
     # 이미지 열기

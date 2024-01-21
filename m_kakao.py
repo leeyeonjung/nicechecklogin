@@ -9,6 +9,8 @@ signUp.kakaoLoginClick()
 
 signUp.kakaoLoginLogic()
 
+signUp.confirmMerchant()
+
 signUp.passGuidePage()
 
 signUp.merchantPASS()

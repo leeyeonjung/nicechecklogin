@@ -11,4 +11,6 @@ signUp.phoneNumberLoginLogic()
 
 signUp.passGuidePage()
 
+signUp.confirmMerchant()
+
 signUp.merchantPASS()
