@@ -3,12 +3,12 @@ import signUp
 
 webDriver.cal()
 
-signUp.merchant()
+signUp.agency()
 
 signUp.phoneNumberLoginclick()
 
 signUp.phoneNumberLoginLogic()
 
-signUp.passGuidePage()
+signUp.confirmAgency()
 
-signUp.merchantPASS()
+signUp.agencyPASS()

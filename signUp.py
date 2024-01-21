@@ -1,12 +1,14 @@
 from configuration import webDriver
+import controlImage.compareImage as compareImage
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.common.by import By
 import time
 
 webDriver.cal()
 
 context_handles = webDriver.wd.contexts
-
-# webDriver.wd.switch_to.context(context_handles[0]) native
-# webDriver.wd.switch_to.context(context_handles[1]) webview
+# webDriver.wd.switch_to.context(context_handles[0]) native / webDriver.wd.switch_to.context(context_handles[1]) webview
 
 #가맹점 선택
 def merchant():
@@ -18,7 +20,7 @@ def agency():
     webDriver.xpath('//android.widget.TextView[@text="나이스대리점"]').click()
     time.sleep(0.3)
 
-#카카오 회원가입 클릭
+#휴대폰 번호로 회원가입 진입
 def phoneNumberLoginclick():
     webDriver.wd.switch_to.context(context_handles[0])
     webDriver.xpath('//android.widget.Button[@text="휴대폰번호로 회원가입"]').click()
@@ -101,45 +103,49 @@ def phoneNumberLoginLogic():
     webDriver.xpath('//android.widget.Button[@text="시작하기"]').click()
     time.sleep(1.0)
 
-#카카오 회원가입 클릭
+#카카오 회원가입 화면 진입
 def kakaoLoginClick():
     webDriver.xpath('//android.widget.Button[@text="카카오로 회원가입"]').click()
     time.sleep(2.0)
 
+#카카오로 회원가입 로직
 def kakaoLoginLogic():
-    webDriver.wd.switch_to.context(context_handles[1])
-    #아이디 입력
-    webDriver.xpath('//input[@name="loginId"]').send_keys('asa4828@daum.net')
-    time.sleep(0.5)
-    #비밀번호 입력
-    webDriver.xpath('//input[@name="password"]').send_keys('jeong0109**')
-    time.sleep(0.5)
-    #로그인 버튼 클릭
-    webDriver.xpath('//article[@id="mainContent"]/div/div/form/div[4]/button').click()
-    time.sleep(2.0)
+    try:
+        element = WebDriverWait(webDriver.wd, 3).until(EC.presence_of_element_located((By.XPATH, '//android.widget.TextView[@text="Kakao"]')))
+        webDriver.wd.switch_to.context(context_handles[1])
+        #아이디 입력
+        webDriver.xpath('//input[@name="loginId"]').send_keys('asa4828@daum.net')
+        time.sleep(0.5)
+        #비밀번호 입력
+        webDriver.xpath('//input[@name="password"]').send_keys('jeong0109**')
+        time.sleep(0.5)
+        #로그인 버튼 클릭
+        webDriver.xpath('//article[@id="mainContent"]/div/div/form/div[4]/button').click()
+        time.sleep(2.0)
+    except Exception:
+        pass
 
-#대리점인증화면
+#대리점 인증 화면
 def confirmAgency():
     webDriver.wd.switch_to.context(context_handles[0])
 
-    #대리점 번호
-    agency_num='411391871'
+    webDriver.xpath('//android.webkit.WebView[@text="NICE CHECK APP"]/android.view.View/android.view.View[2]/android.widget.EditText[1]').click()
 
-    # 대상 엘리먼트 선택
-    input_element = webDriver.xpath('//android.webkit.WebView[@text="NICE CHECK APP"]/android.view.View/android.view.View[2]/android.widget.EditText[1]')
+    agency_num=['4110391871','8405']
 
-    # 기존 텍스트 먼저 입력
-    input_element.send_keys(agency_num[0])
+    for i in agency_num[0]:
+        webDriver.wd.press_keycode(int(i)+7) #1
+        time.sleep(0.3)
 
-    # 나머지 텍스트를 1글자씩 추가하면서 0.1초 간격으로 대기
-    for char in agency_num[1:]:
-        time.sleep(0.1)
-        input_element.send_keys(char)
-
-    time.sleep(0.5)
+    time.sleep(1.0)
     #대리점 코드
-    webDriver.xpath('//android.webkit.WebView[@text="NICE CHECK APP"]/android.view.View/android.view.View[2]/android.widget.EditText[2]').send_keys('8405')
-    time.sleep(0.5)
+    webDriver.xpath('//android.webkit.WebView[@text="NICE CHECK APP"]/android.view.View/android.view.View[2]/android.widget.EditText[2]').click()
+
+    for i in agency_num[1]:
+        webDriver.wd.press_keycode(int(i)+7) #1
+        time.sleep(0.3)
+
+    time.sleep(1.0)
     #대표,점장,매니저 선택란
     # //android.webkit.WebView[@text="NICE CHECK APP"]/android.view.View/android.view.View[2]/android.view.View[1]
     # //android.widget.CheckedTextView[@resource-id="android:id/text1" and @text="대표"]
@@ -151,18 +157,43 @@ def confirmAgency():
 
 #가이드화면 넘기기
 def passGuidePage():
-    webDriver.wd.switch_to.context(context_handles[0])
-    webDriver.xpath('//android.webkit.WebView[@text="NICE CHECK APP"]/android.view.View/android.view.View/android.widget.TextView').click()
-    time.sleep(0.5)
-    webDriver.xpath('//android.webkit.WebView[@text="NICE CHECK APP"]/android.view.View/android.view.View/android.widget.TextView').click()
-    time.sleep(0.5)
-    webDriver.wd.switch_to.context(context_handles[1])
-    webDriver.xpath('//button').click()
+    #비교군 이미지 경로
+    splashImage = 'C:/mobile_automation_testing/niceCheck/niceCheck_Login/controlImage/image/splash.png'
+    #스크린샷 이미지 경로
+    screenshotImage = 'C:/mobile_automation_testing/niceCheck/niceCheck_Login/controlImage/image/screenshot.png'
+    #스크린샷 사이즈 맞춤 경로
+    cropScreenshotImage='C:/mobile_automation_testing/niceCheck/niceCheck_Login/controlImage/image/cropScreenShot.png'
+    #이미지 스크린샷 저장
+    webDriver.wd.save_screenshot(screenshotImage)
+    #스크린샷 사이즈 변경
+    compareImage.cropImage(screenshotImage,cropScreenshotImage)
+    #이미지 비교 및 결과 출력
+    result = compareImage.imageSimilarity(splashImage, cropScreenshotImage)
+    print(result)
 
-#pass의 기준
-def passorfail():
-    webDriver.wd.switch_to.context(context_handles[0])
+    if result == 'pass':
+        webDriver.wd.switch_to.context(context_handles[0])
+        webDriver.xpath('//android.webkit.WebView[@text="NICE CHECK APP"]/android.view.View/android.view.View/android.widget.TextView').click()
+        time.sleep(0.5)
+        webDriver.xpath('//android.webkit.WebView[@text="NICE CHECK APP"]/android.view.View/android.view.View/android.widget.TextView').click()
+        time.sleep(0.5)
+        webDriver.wd.switch_to.context(context_handles[1])
+        webDriver.xpath('//button').click()
+    else:
+        pass
+
+#가맹점 pass의 기준
+def merchantPASS():
+    webDriver.wd.switch_to.context(context_handles[1])
     if (((webDriver.id('totalAmount')).text) == '실시간 매출'):
+        print('login pass')
+    else:
+        print ('login fail')
+
+#대리점 pass의 기준
+def agencyPASS():
+    webDriver.wd.switch_to.context(context_handles[0])
+    if (((webDriver.xpath('//android.widget.TextView[@text="누적회원가입수"]')).text) == '누적회원가입수'):
         print('login pass')
     else:
         print ('login fail')
