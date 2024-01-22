@@ -28,9 +28,6 @@ def phoneNumberLoginclick():
 def phoneNumberLoginLogic():
     webDriver.wd.switch_to.context(context_handles[1])
 
-    webDriver.xpath('//main/div[2]/div[3]/div/button[1]/img').click()
-    time.sleep(1.0)
-
     webDriver.xpath('//input[@name="name"]').send_keys("이연정")
     time.sleep(0.5)
     webDriver.xpath('/html/body/main/div[2]/div[2]/button[1]').click()
@@ -149,12 +146,12 @@ def passGuidePage():
     compareImage.cropImage(screenshotImage,cropScreenshotImage)
 
     #이미지 비교 및 결과를 result에 저장
-    result = compareImage.imageSimilarity(guideImage, cropScreenshotImage)
+    result = compareImage.compare(guideImage, cropScreenshotImage)
     print(result)
 
     #유사도가 사전 설정된 임계값 이상이면 pass를 반환 / 미만이면 fail 반환
     #result가 pass이면 가이드 화면 클릭하여 넘기기
-    if result == 'pass':
+    if result >= 90:
         webDriver.wd.switch_to.context(context_handles[0])
         webDriver.xpath('//android.webkit.WebView[@text="NICE CHECK APP"]/android.view.View/android.view.View/android.widget.TextView').click()
         time.sleep(0.5)
@@ -208,22 +205,26 @@ def confirmAgency():
     # //android.widget.CheckedTextView[@resource-id="android:id/text1" and @text="매니저"]
 
     webDriver.xpath('//android.widget.Button[@text="완료"]').click()
-    time.sleep(1.0)
+    time.sleep(2.0)
 
 #가맹점 PASS 판별 기준 (VAN사에 관계 없이 동일하게 뜨는 문구를 기준으로 함)
 def merchantPASS():
-    webDriver.wd.switch_to.context(context_handles[0])
-    try:
-        WebDriverWait(webDriver.wd, 3).until(EC.presence_of_element_located((By.XPATH, '//android.widget.TextView[@text="매출정산"]')))
-        print('login pass')
-    except Exception:
-        print ('login fail')
+
+    element = webDriver.xpath('//android.widget.TextView[@text="매출정산"]')
+
+    # 엘리먼트가 표시되면 "pass"를 출력합니다.
+    if element.is_displayed():
+        print("login pass")
+    else:
+        print("login fail")
 
 #대리점 PASS 판별 기준
 def agencyPASS():
-    webDriver.wd.switch_to.context(context_handles[0])
-    try:
-        WebDriverWait(webDriver.wd, 3).until(EC.presence_of_element_located((By.XPATH, '//android.widget.TextView[@text="누적회원가입수"]')))
-        print('login pass')
-    except Exception:
-        print ('login fail')
+    
+    element = webDriver.xpath('//android.widget.TextView[@text="누적회원가입수"]')
+
+    # 엘리먼트가 표시되면 "pass"를 출력합니다.
+    if element.is_displayed():
+        print("login pass")
+    else:
+        print("login fail")

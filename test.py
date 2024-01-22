@@ -1,12 +1,40 @@
-import controlImage.compareImage as compareImage
+from configuration import webDriver
+from selenium.webdriver import ActionChains
+import time
 
-#스크린샷 이미지 경로
-screenshotImage = 'C:/mobile_automation_testing/niceCheck/niceCheck_Login/controlImage/image/Screen.png'
+webDriver.cal()
 
-#비교군 이미지 경로
-guideImage = 'C:/mobile_automation_testing/niceCheck/niceCheck_Login/controlImage/image/guide.png'
+context_handles = webDriver.wd.contexts
 
-#이미지 비교 및 결과를 result에 저장
-result = compareImage.imageSimilarity(guideImage, screenshotImage)
+webDriver.wd.switch_to.context(context_handles[1])
+time.sleep(0.5)
 
-print(result)
+#마이페이지 진입
+webDriver.xpath('//header/div/a/img').click()
+time.sleep(0.5)
+
+#회원정보 진입
+webDriver.xpath('//section/div[2]/a[1]').click()
+time.sleep(0.5)
+
+webDriver.wd.switch_to.context(context_handles[0])
+
+element = webDriver.xpath('//android.view.View[@text="회원 탈퇴"]')
+
+
+#회원탈퇴
+element.click()
+# time.sleep(0.5)
+
+# #탈퇴사유 입력란
+# webDriver.xpath('//textarea').send_keys('test')
+# time.sleep(0.5)
+
+# #안할래요
+# # //div[@id="expired-modal"]/div/div/button[1]
+
+# #탈퇴하기
+# webDriver.xpath('//div[@id="expired-modal"]/div/div/button[2]').click()
+# time.sleep(0.5)
+
+# print('agency resign finished!')

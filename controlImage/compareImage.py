@@ -1,5 +1,5 @@
 from PIL import Image
-from PIL import ImageChops
+import numpy as np
 
 def cropImage(image,cropImagePath):
     # 자를 영역 지정 (left, upper, right, lower)
@@ -11,27 +11,28 @@ def cropImage(image,cropImagePath):
     # 이미지 자르기
     Image.open(image).crop((left, upper, right, lower)).save(cropImagePath)
 
-def imageSimilarity(image1, image2, threshold=95):
-    # 이미지 열기
-    img1 = Image.open(image1)
-    img2 = Image.open(image2)
+def mse(image1, image2):
+    # 이미지를 배열로 변환
+    array1 = np.array(image1)
+    array2 = np.array(image2)
 
-    # 이미지 차이 계산
-    diff = ImageChops.difference(img1, img2)
+    # 두 이미지 간의 Mean Squared Error 계산
+    err = np.sum((array1 - array2) ** 2)
+    err /= float(array1.shape[0] * array1.shape[1])
 
-    # 차이 계산 결과를 0-255 사이 값으로 변환
-    diff = diff.convert('L')
+    return err
 
-    # 이미지 유사성 계산
-    bbox = diff.getbbox()
-    if bbox:
-        similarity = (bbox[2] * bbox[3] * 100) / (img1.size[0] * img1.size[1])
-        print(similarity)
-        # 유사성이 지정된 임계값 이상인지 확인
-        if similarity >= threshold:
-            return "pass"
-        else:
-            return "fail"
-    else:
-        # 차이가 없는 경우
-        return "pass"
+def compare(image_path1,image_path2):
+
+    # 이미지 불러오기
+    image1 = Image.open(image_path1)
+    image2 = Image.open(image_path2)
+
+    # 이미지 유사도 계산
+    similarity = mse(image1, image2)
+
+    # 1에서 100으로 정규화된 유사도 값 계산
+    normalized_similarity = 100 - (similarity * 100)
+
+    # 출력 및 판정
+    return normalized_similarity
