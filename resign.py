@@ -17,14 +17,11 @@ def merchant():
     webDriver.xpath('//section/div[2]/a[1]').click()
     time.sleep(0.5)
 
-    some_tag = webDriver.xpath('//ul/li[5]')
+    #회원 탈퇴 버튼 뜨게 스크롤링
+    webDriver.wd.swipe(100, 500, 100, 100, 1500)
+    time.sleep(0.5)
 
-    # somthing element 까지 스크롤
-    action = ActionChains(webDriver.wd)
-    action.move_to_element(some_tag).perform()
-
-    webDriver.xpath('//main/div[3]/div[3]').click()
-    #회원탈퇴
+    #탈퇴 모달 팝업 선택
     webDriver.xpath('//ul/li[5]').click()
     time.sleep(0.5)
 
@@ -39,8 +36,9 @@ def merchant():
     webDriver.xpath('//div[@id="expired-modal"]/div/div/button[2]').click()
     time.sleep(0.5)
 
-    print('agency resign finished!')
-
+    print('merchant resign finished!')
+    time.sleep(2.0)
+    
 def agency():
     webDriver.wd.switch_to.context(context_handles[1])
 
@@ -50,6 +48,10 @@ def agency():
     #회원정보 진입
     webDriver.xpath('//section/div[2]/a').click()
 
+    #회원 탈퇴 버튼 뜨게 스크롤링
+    webDriver.wd.swipe(100, 500, 100, 100)
+    time.sleep(0.5)
+
     #회원탈퇴
     webDriver.xpath('//ul/li[5]').click()
 
@@ -63,3 +65,4 @@ def agency():
     webDriver.xpath('//div[@id="expired-modal"]/div/div/button[2]').click()
 
     print('agency resign finished!')
+    time.sleep(2.0)
