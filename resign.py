@@ -1,5 +1,4 @@
 from configuration import webDriver
-from selenium.webdriver import ActionChains
 import time
 
 context_handles = webDriver.wd.contexts
