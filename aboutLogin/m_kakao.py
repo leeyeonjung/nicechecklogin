@@ -1,8 +1,5 @@
-from configuration import webDriver
-import signUp
-import resign
-
-webDriver.cal()
+import aboutSign.signUp as signUp
+import aboutSign.resign as resign
 
 signUp.merchant()
 
@@ -13,7 +10,5 @@ signUp.kakaoLoginLogic()
 signUp.confirmMerchant()
 
 signUp.passGuidePage()
-
-signUp.merchantPASS()
 
 resign.merchant()

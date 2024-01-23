@@ -1,7 +1,5 @@
-from configuration import webDriver
-import signUp
-
-webDriver.cal()
+import aboutSign.signUp as signUp
+import aboutSign.resign as resign
 
 signUp.agency()
 
@@ -11,4 +9,4 @@ signUp.phoneNumberLoginLogic()
 
 signUp.confirmAgency()
 
-signUp.agencyPASS()
+resign.agency()

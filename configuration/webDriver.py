@@ -6,7 +6,7 @@ desired_cap = {
   "platformName": "android",
   "appium:appPackage": "kr.co.nicevan.bujaapp",
   "appium:appActivity": "kr.co.nicevan.bujaapp.MainActivity",
-  # "autoWebview" : "true", #자동 웹뷰 열기
+  "autoWebview" : "true", #자동 웹뷰 열기
   "noReset" : "true", #App data no reset
   "autoGrantPermissions": "true" #권한 전체 자동 허용
 }

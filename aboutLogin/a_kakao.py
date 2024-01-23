@@ -1,8 +1,5 @@
-from configuration import webDriver
-import signUp
-import resign
-
-webDriver.cal()
+import aboutSign.signUp as signUp
+import aboutSign.resign as resign
 
 signUp.agency()
 
@@ -11,7 +8,5 @@ signUp.kakaoLoginClick()
 signUp.kakaoLoginLogic()
 
 signUp.confirmAgency()
-
-signUp.agencyPASS()
 
 resign.agency()

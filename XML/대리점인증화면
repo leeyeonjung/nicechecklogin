@@ -1,0 +1,87 @@
+<html>
+	<body>
+  		
+
+
+
+
+
+<!-- cdn path -->
+
+
+<!-- file path -->
+<!--  -->
+
+
+<!-- banner path -->
+
+
+<!-- css, js version  -->
+
+
+
+<header class="sub-header">
+	<a href="javascript:void(0);" class="btn-back" onclick="back()">
+		<div class="icon"/>
+	</a>
+    <h4 id="header-title"/>
+    <a href="javascript:void(0);"/>
+</header>
+
+
+
+  		<main>
+	  		<div class="loading"/>
+			
+
+
+
+
+
+<!-- cdn path -->
+
+
+<!-- file path -->
+<!--  -->
+
+
+<!-- banner path -->
+
+
+<!-- css, js version  -->
+
+
+<link type="text/css" rel="stylesheet" href="https://bujatestcdn.nicevan.co.kr:4435/css/join.css?ver_20231218_01"/>
+
+
+<div class="section">
+    <h2 class="join-tit chktype-tit" style="margin-top:65px;">
+		&#xB098;&#xC774;&#xC2A4;&#xC815;&#xBCF4;&#xD1B5;&#xC2E0;<br/>&#xB300;&#xB9AC;&#xC810; &#xC815;&#xBCF4; &#xC778;&#xC99D;&#xC774; &#xD544;&#xC694;&#xD574;&#xC694;
+    </h2>
+    <div class="join-auth">
+    	<input type="hidden" name="name" value="&#xC774;&#xC5F0;&#xC815;"/> 
+    	<input type="hidden" name="email" value="asa4828@daum.net"/> 
+    	<input type="hidden" name="signature" value=""/> 
+    	<input type="hidden" name="userType" value="AGENCY"/> 
+		<div class="join-procedure">
+            <input type="text" placeholder="&#xB300;&#xB9AC;&#xC810; &#xC0AC;&#xC5C5;&#xC790;&#xBC88;&#xD638;" name="biz-no" maxlength="12"/>
+            <input type="text" placeholder="&#xB300;&#xB9AC;&#xC810;&#xCF54;&#xB4DC;" name="code" maxlength="4"/>
+            <div class="mix-input-1">
+                <select name="lank">
+                    <option value="MASTER">&#xB300;&#xD45C;</option>
+                    <option value="ADMIN">&#xC810;&#xC7A5;</option>
+                    <option value="MANAGER">&#xB9E4;&#xB2C8;&#xC800;</option>
+                </select>
+            </div>
+            <p class="caption">&#xD0C0; &#xC0AC;&#xC5C5;&#xC790; &#xBC88;&#xD638;&#xB97C; &#xC0AC;&#xC6A9;&#xD558;&#xB294; &#xACBD;&#xC6B0;, &#xAD00;&#xB828; &#xBC95;&#xC5D0; &#xB530;&#xB77C; &#xC870;&#xCE58;&#xB420; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+		</div>
+    </div>
+    <div class="bottom-btn">
+		<button type="button" class="primary" disabled="" onclick="goNextStep()">&#xC644;&#xB8CC;</button>
+    </div>
+</div>
+
+
+  		</main>
+	
+</body></html>

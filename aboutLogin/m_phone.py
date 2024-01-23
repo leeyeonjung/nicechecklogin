@@ -1,7 +1,5 @@
-from configuration import webDriver
-import signUp
-
-webDriver.cal()
+import aboutSign.signUp as signUp
+import aboutSign.resign as resign
 
 signUp.merchant()
 
@@ -13,4 +11,4 @@ signUp.confirmMerchant()
 
 signUp.passGuidePage()
 
-signUp.merchantPASS()
+resign.merchant()

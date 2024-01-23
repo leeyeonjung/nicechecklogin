@@ -1,11 +1,7 @@
 from configuration import webDriver
 import time
 
-context_handles = webDriver.wd.contexts
-# webDriver.wd.switch_to.context(context_handles[0]) native / webDriver.wd.switch_to.context(context_handles[1]) webview
-
 def merchant():
-    webDriver.wd.switch_to.context(context_handles[1])
     time.sleep(0.5)
 
     #마이페이지 진입
@@ -39,7 +35,6 @@ def merchant():
     time.sleep(2.0)
     
 def agency():
-    webDriver.wd.switch_to.context(context_handles[1])
 
     #마이페이지 진입
     webDriver.xpath('//header/div/a[2]/img').click()

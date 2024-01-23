@@ -10,11 +10,13 @@ context_handles = webDriver.wd.contexts
 
 #가맹점 선택
 def merchant():
+    webDriver.wd.switch_to.context(context_handles[1])
     webDriver.xpath('//main/div[2]/div[2]/div/div[1]').click()
     time.sleep(0.3)
 
 #대리점 선택
 def agency():
+    webDriver.wd.switch_to.context(context_handles[1])
     webDriver.xpath('//main/div[2]/div[2]/div/div[2]').click()
     time.sleep(0.3)
 
@@ -84,19 +86,18 @@ def phoneNumberLoginLogic():
     #가입하기 버튼 선택
     webDriver.xpath('/html/body/main/div[2]/div[2]/button[3]').click()
 
-    webDriver.wd.switch_to.context(context_handles[0])
     #서비스 약관 동의
     #전체동의
-    webDriver.xpath('//android.widget.TextView[@text="전체 동의"]').click()
+    webDriver.xpath('//main/div[2]/div[1]/div/div[1]/label').click()
     #약관1동의
-    #//android.webkit.WebView[@text="NICE CHECK APP"]/android.view.View/android.view.View[2]/android.view.View[2]
+    #//main/div[2]/div[1]/div/div[2]/label
     #약관2동의
-    #//android.webkit.WebView[@text="NICE CHECK APP"]/android.view.View/android.view.View[2]/android.view.View[3]
+    #//main/div[2]/div[1]/div/div[3]/label
     #전표몰 동의
-    #//android.webkit.WebView[@text="NICE CHECK APP"]/android.view.View/android.view.View[2]/android.view.View[4]
+    #//main/div[2]/div[1]/div/div[4]/label
     time.sleep(0.5)
 
-    webDriver.xpath('//android.widget.Button[@text="시작하기"]').click()
+    webDriver.xpath('//button').click()
     time.sleep(1.0)
 
 #카카오 회원가입 화면 진입
@@ -149,11 +150,10 @@ def passGuidePage():
     #유사도가 사전 설정된 임계값 이상이면 pass를 반환 / 미만이면 fail 반환
     #result가 pass이면 가이드 화면 클릭하여 넘기기
 
-    if result == 'pass':
-        webDriver.xpath('//div[@id="swiper-wrapper-10e1043d7f54e542ef"]/div[1]').click()
-        time.sleep(0.5)
-        webDriver.xpath('//div[@id="swiper-wrapper-10e1043d7f54e542ef"]/div[2]').click()
-        time.sleep(0.5)
+    if result >= 90:
+        for i in range(2):
+            webDriver.wd.swipe(300, 100, 100, 100)
+            time.sleep(0.5)
         webDriver.xpath('//button').click()
     #가이드 화면이 뜨지 않는다면 pass
     else:
@@ -163,7 +163,6 @@ def passGuidePage():
 def confirmMerchant():
     try:
         WebDriverWait(webDriver.wd, 3).until(EC.presence_of_element_located((By.XPATH, '//div[@id="successJoinAlert"]')))
-        print('popup pass')
         webDriver.xpath('//div[@id="successJoinAlert"]/div/div/button').click()
     except Exception:
         pass
@@ -172,6 +171,7 @@ def confirmMerchant():
 #대리점 인증 화면
 def confirmAgency():
     webDriver.xpath('//input[@name="biz-no"]').click()
+    time.sleep(0.5)
 
     #대리점 사업자번호, 대리점 번호 입력
     agency_num=['4110391871','8405']
@@ -194,21 +194,3 @@ def confirmAgency():
 
     webDriver.xpath('//button').click()
     time.sleep(1.0)
-
-#가맹점 PASS 판별 기준 (VAN사에 관계 없이 동일하게 뜨는 문구를 기준으로 함)
-def merchantPASS():
-    webDriver.wd.switch_to.context(context_handles[0])
-    try:
-        WebDriverWait(webDriver.wd, 3).until(EC.presence_of_element_located((By.XPATH, '//android.widget.TextView[@text="매출정산"]')))
-        print('login pass')
-    except Exception:
-        print ('login fail')
-
-#대리점 PASS 판별 기준
-def agencyPASS():
-    webDriver.wd.switch_to.context(context_handles[0])
-    try:
-        WebDriverWait(webDriver.wd, 3).until(EC.presence_of_element_located((By.XPATH, '//android.widget.TextView[@text="누적회원가입수"]')))
-        print('login pass')
-    except Exception:
-        print ('login fail')
