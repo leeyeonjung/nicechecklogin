@@ -7,7 +7,7 @@ desired_cap = {
   "appium:appPackage": "kr.co.nicevan.bujaapp",
   "appium:appActivity": "kr.co.nicevan.bujaapp.MainActivity",
   "autoWebview" : "true", #자동 웹뷰 열기
-  "noReset" : "true", #App data no reset
+  # "noReset" : "true", #App data no reset
   "autoGrantPermissions": "true" #권한 전체 자동 허용
 }
 
@@ -26,4 +26,5 @@ def id(data):
     
 #webDriver.wd.close_app() / 앱 종료
 #webDriver.wd.launch_app() / 앱 백그라운드에서 재시작
+#webDriver.wd.reset() 
 # ['NATIVE_APP', 'WEBVIEW_kr.co.nicevan.bujaapp']

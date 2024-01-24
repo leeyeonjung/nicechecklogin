@@ -1,5 +1,4 @@
 from configuration import webDriver
-import controlImage.compareImage as compareImage
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
@@ -8,36 +7,29 @@ import time
 context_handles = webDriver.wd.contexts
 # webDriver.wd.switch_to.context(context_handles[0]) native / webDriver.wd.switch_to.context(context_handles[1]) webview
 
-#가맹점 선택
-def merchant():
-    webDriver.wd.switch_to.context(context_handles[1])
-    webDriver.xpath('//main/div[2]/div[2]/div/div[1]').click()
-    time.sleep(0.3)
-
-#대리점 선택
-def agency():
-    webDriver.wd.switch_to.context(context_handles[1])
-    webDriver.xpath('//main/div[2]/div[2]/div/div[2]').click()
-    time.sleep(0.3)
-
 #휴대폰 번호로 회원가입 진입
 def phoneNumberLoginclick():
     webDriver.xpath('//main/div[2]/div[3]/div/button[1]').click()
     time.sleep(1.0)
     
 #휴대폰 번호로 회원가입
-def phoneNumberLoginLogic():
-    webDriver.xpath('//input[@name="name"]').send_keys("이연정")
+def phoneNumberLoginLogic(sign_phone):
+
+    name=sign_phone[0]
+    email=sign_phone[1]
+    phonenumber=str(sign_phone[2])
+
+    webDriver.xpath('//input[@name="name"]').send_keys(name)
     time.sleep(0.5)
     webDriver.xpath('/html/body/main/div[2]/div[2]/button[1]').click()
     time.sleep(0.5)
 
-    webDriver.xpath('//input[@name="email"]').send_keys("asa4828@daum.net")
+    webDriver.xpath('//input[@name="email"]').send_keys(email)
     time.sleep(0.5)
     webDriver.xpath('/html/body/main/div[2]/div[2]/button[1]').click()
     time.sleep(0.5)
 
-    webDriver.xpath('//input[@name="phone"]').send_keys("01041729247")
+    webDriver.xpath('//input[@name="phone"]').send_keys(phonenumber)
     time.sleep(0.5)
     webDriver.xpath('/html/body/main/div[2]/div[2]/button[4]').click()
     time.sleep(0.5)
@@ -106,16 +98,18 @@ def kakaoLoginClick():
     time.sleep(2.0)
 
 #카카오로 회원가입 로직
-def kakaoLoginLogic():
+def kakaoLoginLogic(sign_kakao):
+    email=sign_kakao[0]
+    password=sign_kakao[1]
 
     #단말기에 카카오앱 미설치 상태로 3초 wait 후, kakao element 확인되면 이메일, 비밀번호 입력하여 로그인
     try:
         WebDriverWait(webDriver.wd, 3).until(EC.presence_of_element_located((By.XPATH, '//h1/span/span')))
         #아이디 입력
-        webDriver.xpath('//input[@name="loginId"]').send_keys('asa4828@daum.net')
+        webDriver.xpath('//input[@name="loginId"]').send_keys(email)
         time.sleep(0.5)
         #비밀번호 입력
-        webDriver.xpath('//input[@name="password"]').send_keys('jeong0109**')
+        webDriver.xpath('//input[@name="password"]').send_keys(password)
         time.sleep(0.5)
         #로그인 버튼 클릭
         webDriver.xpath('//article[@id="mainContent"]/div/div/form/div[4]/button').click()
@@ -124,73 +118,4 @@ def kakaoLoginLogic():
     except Exception:
         pass
 
-    time.sleep(1.0)
-
-#가이드화면 넘기기
-def passGuidePage():
-
-    #기존 저장된 가이드 화면과 유사도 판정 후, 가이드 화면과 동일한 내용으로 확인 되면 화면 클릭 2번과 시작하기 버튼 눌러서 가이드 넘기기
-    #비교군 이미지 경로
-    guideImage = 'C:/mobile_automation_testing/niceCheck/niceCheck_Login/controlImage/image/guide.png'
-
-    #스크린샷 이미지 경로
-    screenshotImage = 'C:/mobile_automation_testing/niceCheck/niceCheck_Login/controlImage/image/screenshot.png'
-    #이미지 스크린샷 저장
-    webDriver.wd.save_screenshot(screenshotImage)
-
-    #스크린샷 사이즈 crop 경로
-    cropScreenshotImage='C:/mobile_automation_testing/niceCheck/niceCheck_Login/controlImage/image/cropScreenShot.png'
-    #스크린샷 사이즈 변경
-    compareImage.cropImage(screenshotImage,cropScreenshotImage)
-
-    #이미지 비교 및 결과를 result에 저장
-    result = compareImage.compare(guideImage, cropScreenshotImage)
-    print(result)
-
-    #유사도가 사전 설정된 임계값 이상이면 pass를 반환 / 미만이면 fail 반환
-    #result가 pass이면 가이드 화면 클릭하여 넘기기
-
-    if result >= 90:
-        for i in range(2):
-            webDriver.wd.swipe(300, 100, 100, 100)
-            time.sleep(0.5)
-        webDriver.xpath('//button').click()
-    #가이드 화면이 뜨지 않는다면 pass
-    else:
-        pass
-
-#사업자 미등록 가맹점 로직
-def confirmMerchant():
-    try:
-        WebDriverWait(webDriver.wd, 3).until(EC.presence_of_element_located((By.XPATH, '//div[@id="successJoinAlert"]')))
-        webDriver.xpath('//div[@id="successJoinAlert"]/div/div/button').click()
-    except Exception:
-        pass
-    time.sleep(1.0)
-
-#대리점 인증 화면
-def confirmAgency():
-    webDriver.xpath('//input[@name="biz-no"]').click()
-    time.sleep(0.5)
-
-    #대리점 사업자번호, 대리점 번호 입력
-    agency_num=['4110391871','8405']
-
-    #send_keys를 이용하여 내용 입력시, javascript 사업자번호 10자리로 인식 불가로 해당로직 press_keycode로 구현
-
-    #대리점 사업자 번호
-    for i in agency_num[0]:
-        webDriver.wd.press_keycode(int(i)+7) #1
-        time.sleep(0.3)
-    time.sleep(1.0)
-
-    #대리점 코드
-    webDriver.xpath('//input[@name="code"]').click()
-
-    for i in agency_num[1]:
-        webDriver.wd.press_keycode(int(i)+7) #1
-        time.sleep(0.3)
-    time.sleep(1.0)
-
-    webDriver.xpath('//button').click()
     time.sleep(1.0)
