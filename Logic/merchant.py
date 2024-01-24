@@ -2,8 +2,10 @@ from configuration import webDriver
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
-import Logic.controlImage.compareImage
+from controlImage import compareImage
 import time
+
+
 
 context_handles = webDriver.wd.contexts
 print(context_handles)
@@ -20,20 +22,20 @@ def passGuidePage():
 
     #기존 저장된 가이드 화면과 유사도 판정 후, 가이드 화면과 동일한 내용으로 확인 되면 화면 클릭 2번과 시작하기 버튼 눌러서 가이드 넘기기
     #비교군 이미지 경로
-    guideImage = 'C:/mobile_automation_testing/niceCheck/niceCheck_Login/Logic/controlImage/image/guide.png'
+    guideImage = 'C:/mobile_automation_testing/niceCheck/niceCheck_Login/controlImage/image/guide.png'
 
     #스크린샷 이미지 경로
-    screenshotImage = 'C:/mobile_automation_testing/niceCheck/niceCheck_Login/Logic/controlImage/image/screenshot.png'
+    screenshotImage = 'C:/mobile_automation_testing/niceCheck/niceCheck_Login/controlImage/image/screenshot.png'
     #이미지 스크린샷 저장
     webDriver.wd.save_screenshot(screenshotImage)
 
     #스크린샷 사이즈 crop 경로
-    cropScreenshotImage='C:/mobile_automation_testing/niceCheck/niceCheck_Login/Logic/controlImage/image/cropScreenShot.png'
+    cropScreenshotImage='C:/mobile_automation_testing/niceCheck/niceCheck_Login/controlImage/image/cropScreenShot.png'
     #스크린샷 사이즈 변경
-    Logic.controlImage.compareImage.cropImage(screenshotImage,cropScreenshotImage)
+    compareImage.cropImage(screenshotImage,cropScreenshotImage)
 
     #이미지 비교 및 결과를 result에 저장
-    result = Logic.controlImage.compareImage.compare(guideImage, cropScreenshotImage)
+    result = compareImage.compare(guideImage, cropScreenshotImage)
     print(result)
 
     #유사도가 사전 설정된 임계값 이상이면 pass를 반환 / 미만이면 fail 반환

@@ -2,11 +2,11 @@ from configuration import webDriver
 import time
 
 context_handles = webDriver.wd.contexts
-# webDriver.wd.switch_to.context(context_handles[0]) native / webDriver.wd.switch_to.context(context_handles[1]) webview
+# webDriver.wd.switch_to.context(context_handles[0]) native / webDriver.wd.switch_to.context(WEBVIEW_kr.co.nicevan.bujaapp) webview
 
 #대리점 선택
 def intoAgency():
-    webDriver.wd.switch_to.context(context_handles[1])
+    webDriver.wd.switch_to.context('WEBVIEW_kr.co.nicevan.bujaapp')
     webDriver.xpath('//main/div[2]/div[2]/div/div[2]').click()
     time.sleep(0.3)
 

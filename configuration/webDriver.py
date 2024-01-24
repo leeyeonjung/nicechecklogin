@@ -2,7 +2,7 @@ from appium import webdriver
 from selenium.webdriver.common.by import By
 
 desired_cap = {
-  "appium:deviceName": "R3CR702LQGV",
+  "appium:deviceName": "R5CR807WVEJ",
   "platformName": "android",
   "appium:appPackage": "kr.co.nicevan.bujaapp",
   "appium:appActivity": "kr.co.nicevan.bujaapp.MainActivity",

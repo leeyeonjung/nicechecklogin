@@ -5,7 +5,7 @@ from selenium.webdriver.common.by import By
 import time
 
 context_handles = webDriver.wd.contexts
-# webDriver.wd.switch_to.context(context_handles[0]) native / webDriver.wd.switch_to.context(context_handles[1]) webview
+# webDriver.wd.switch_to.context(context_handles[0]) native / webDriver.wd.switch_to.context('WEBVIEW_kr.co.nicevan.bujaapp') webview
 
 #휴대폰 번호로 회원가입 진입
 def phoneNumberLoginclick():
