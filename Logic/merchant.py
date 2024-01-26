@@ -5,15 +5,13 @@ from selenium.webdriver.common.by import By
 from controlImage import compareImage
 import time
 
-
-
 context_handles = webDriver.wd.contexts
 print(context_handles)
-# webDriver.wd.switch_to.context(context_handles[0]) native / webDriver.wd.switch_to.context(context_handles[1]) webview
+# webDriver.wd.switch_to.context(context_handles[0]) native / webDriver.wd.switch_to.context('WEBVIEW_kr.co.nicevan.bujaapp') webview
 
 #가맹점 선택
 def intoMerchant():
-    webDriver.wd.switch_to.context(context_handles[1])
+    webDriver.wd.switch_to.context('WEBVIEW_kr.co.nicevan.bujaapp')
     webDriver.xpath('//main/div[2]/div[2]/div/div[1]').click()
     time.sleep(0.3)
 
@@ -58,6 +56,7 @@ def confirmMerchant():
     except Exception:
         pass
     time.sleep(1.0)
+
 
 def resign():
     time.sleep(0.5)

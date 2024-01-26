@@ -2,7 +2,11 @@ from configuration import webDriver
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
+import utilities.ExcelUtils
+from datetime import datetime
 import time
+
+file_path = './/testData//data.xlsx'
 
 context_handles = webDriver.wd.contexts
 # webDriver.wd.switch_to.context(context_handles[0]) native / webDriver.wd.switch_to.context('WEBVIEW_kr.co.nicevan.bujaapp') webview
@@ -119,3 +123,12 @@ def kakaoLoginLogic(sign_kakao):
         pass
 
     time.sleep(1.0)
+
+def recordPassResult(result1, result2, tc, rownum, columnnum):
+    if WebDriverWait(webDriver.wd, 3).until(EC.presence_of_element_located((By.XPATH, result1))) == result2:
+         utilities.ExcelUtils.writeData(file_path,'result', rownum, columnnum, (tc + ' pass ' + (datetime.now().strftime("%Y-%m-%d %H:%M:%S"))))
+    else:
+         utilities.ExcelUtils.writeData(file_path,'result', rownum, columnnum, (tc + 'fail ' + (datetime.now().strftime("%Y-%m-%d %H:%M:%S"))))
+
+def recordFailResult(result1, result2, tc, rownum, columnnum):
+    return utilities.ExcelUtils.writeData(file_path,'result', rownum, columnnum, (tc + 'fail ' + (datetime.now().strftime("%Y-%m-%d %H:%M:%S")))) 
