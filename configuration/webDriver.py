@@ -1,5 +1,6 @@
 from appium import webdriver
 from selenium.webdriver.common.by import By
+<<<<<<< HEAD
 from appium.options.android import UiAutomator2Options
 
 capabilities = dict(
@@ -20,6 +21,20 @@ wd = webdriver.Remote(appium_server_url, options=UiAutomator2Options().load_capa
 def cal():
   wd.implicitly_wait(5)
   return wd
+=======
+
+desired_cap = {
+  "appium:deviceName": "R5CR807WVEJ",
+  "platformName": "android",
+  "appium:appPackage": "kr.co.nicevan.bujaapp",
+  "appium:appActivity": "kr.co.nicevan.bujaapp.MainActivity",
+  "autoWebview" : "true", #자동 웹뷰 열기
+  # "noReset" : "true", #App data no reset
+  "autoGrantPermissions": "true" #권한 전체 자동 허용
+}
+
+wd = webdriver.Remote('http://localhost:4723/wd/hub', desired_cap)
+>>>>>>> 6227792b190c42e077bd02640c56f86496c7f3a5
 
 def cal():
   wd.implicitly_wait(5)

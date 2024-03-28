@@ -18,8 +18,13 @@ except Exception as e:
     pass
 
 
+<<<<<<< HEAD
 webDriver.wd.close()
 webDriver.wd.launch()
+=======
+webDriver.wd.close_app()
+webDriver.wd.launch_app()
+>>>>>>> 6227792b190c42e077bd02640c56f86496c7f3a5
 
 try:
     Logic.merchant.intoMerchant()
