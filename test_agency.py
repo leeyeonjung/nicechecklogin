@@ -16,13 +16,8 @@ except Exception as e:
     Logic.common.recordFailResult(('//main/div/div[1]/div/div[2]/div/p'), '누적회원가입수','login', 2, 4)
     pass
 
-<<<<<<< HEAD
 webDriver.wd.close()
 webDriver.wd.launch()
-=======
-webDriver.wd.close_app()
-webDriver.wd.launch_app()
->>>>>>> 6227792b190c42e077bd02640c56f86496c7f3a5
 
 try:
     Logic.agency.intoAgency()
