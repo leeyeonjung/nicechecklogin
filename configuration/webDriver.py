@@ -2,36 +2,20 @@ from appium import webdriver
 from selenium.webdriver.common.by import By
 from appium.options.android import UiAutomator2Options
 
-capabilities = dict(
-    platformName='Android',
-    automationName='uiautomator2',
-    deviceName='Android',
-    appPackage="kr.co.nicevan.bujaapp",
-    appActivity='kr.co.nicevan.bujaapp.MainActivity',
-    autoWebview="true", #자동 웹뷰 열기
-    # noReset="true", #App data no reset
-    autoGrantPermissions="true" #권한 전체 자동 허용
-)
+capabilities = {
+  "platformName": "Android",
+  "appium:automationName": "uiautomator2",
+  "appium:deviceName": "R3CX209SA3N",
+  "appium:appPackage": "com.torder.ceo",
+  "appium:appActivity": "com.torder.ceo.MainActivity",
+  "appium:autoGrantPermissions": "true", #권한 전체 자동 허용
+  "appium:noreset": "true" #App data no reset
+  # "autoWebview": "true" #자동 웹뷰 열기
+}
 
 appium_server_url = 'http://localhost:4723'
 
 wd = webdriver.Remote(appium_server_url, options=UiAutomator2Options().load_capabilities(capabilities))
-
-def cal():
-  wd.implicitly_wait(5)
-  return wd
-
-desired_cap = {
-  "appium:deviceName": "R5CR807WVEJ",
-  "platformName": "android",
-  "appium:appPackage": "kr.co.nicevan.bujaapp",
-  "appium:appActivity": "kr.co.nicevan.bujaapp.MainActivity",
-  "autoWebview" : "true", #자동 웹뷰 열기
-  # "noReset" : "true", #App data no reset
-  "autoGrantPermissions": "true" #권한 전체 자동 허용
-}
-
-wd = webdriver.Remote('http://localhost:4723/wd/hub', desired_cap)
 
 def cal():
   wd.implicitly_wait(5)
@@ -48,3 +32,5 @@ def id(data):
 #webDriver.wd.launch_app() / 앱 백그라운드에서 재시작
 #webDriver.wd.reset() 
 # ['NATIVE_APP', 'WEBVIEW_kr.co.nicevan.bujaapp']
+
+cal()
