@@ -33,4 +33,12 @@ def id(data):
 #webDriver.wd.reset() 
 # ['NATIVE_APP', 'WEBVIEW_kr.co.nicevan.bujaapp']
 
-cal()
+
+import pytest
+
+class TestReports:
+    @pytest.fixture
+    def setup(self):
+        pass
+    def test_1(self):
+        assert cal()
