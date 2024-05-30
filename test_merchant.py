@@ -1,38 +1,60 @@
-import Logic.common
-import Logic.merchant
-import test_data
+import pytest
 from configuration import webDriver
+import Logic.common as cm
+import Logic.merchant as mc
+import testData.test_data as test_data
 
-webDriver.cal()
+class Test_KakaoMerchant:
+    @pytest.fixture
+    def setup(self):
+        pass
 
-try:
-    Logic.merchant.intoMerchant()
-    Logic.common.kakaoLoginClick()
-    Logic.common.kakaoLoginLogic(test_data.sign_kakao[0])
-    Logic.merchant.confirmMerchant()
-    Logic.merchant.passGuidePage()
-    Logic.common.recordPassResult(('//main/div/section/section[3]/p'), '매출정산','login', 2, 2)
-    Logic.merchant.resign()
-except Exception as e:
-    Logic.common.recordFailResult(('//main/div/section/section[3]/p'), '매출정산', 'login',2, 2)
-    pass
+    def test_startApp(self):
+        assert webDriver.cal()
+
+    def test_intoMerchant(self):
+        assert mc.intoMerchant()
+
+    def test_kakao(self):
+        assert cm.kakaoLoginClick()
+        assert cm.kakaoLoginLogic(test_data.sign_kakao[0])
+
+    def test_confirmMerchant(self):
+        assert mc.confirmMerchant()
+
+    def test_passGuidePage():
+        assert mc.passGuidePage()
+
+    def test_recordExcel(self):
+        assert cm.recordResult(('//main/div/section/section[3]/p'), '매출정산','login', 2, 2)
+
+    def test_resign(self):
+        assert mc.resign()
 
 
-webDriver.wd.close()
-webDriver.wd.launch()
+class Test_PhoneMerchant:
+    @pytest.fixture
+    def setup(self):
+        pass
 
-try:
-    Logic.merchant.intoMerchant()
-    Logic.common.phoneNumberLoginclick()
-    #sign_phone(name, email, phonenumber)
-    Logic.common.phoneNumberLoginLogic(test_data.sign_phone[0])
-    print(test_data.sign_phone[0])
-    Logic.merchant.confirmMerchant()
-    Logic.merchant.passGuidePage()
-    Logic.common.recordPassResult(('//main/div/section/section[3]/p'), '매출정산','login', 2, 3)
-    Logic.merchant.resign()
-except Exception as e:
-    Logic.common.recordFailResult(('//main/div/section/section[3]/p'), '매출정산','login', 2, 3)
-    pass
+    def test_startApp(self):
+        assert webDriver.cal()
 
-webDriver.wd.quit()
+    def test_intoMerchant(self):
+        assert mc.intoMerchant()
+
+    def test_phoneLogin(self):
+        assert cm.phoneNumberLoginclick()
+        assert cm.phoneNumberLoginLogic(test_data.sign_phone[0])
+
+    def test_confirmMerchant(self):
+        assert mc.confirmMerchant()
+
+    def test_passGuidePage():
+        assert mc.passGuidePage()
+
+    def test_recordExcel(self):
+        assert cm.recordResult(('//main/div/section/section[3]/p'), '매출정산','login', 2, 3)
+
+    def test_resign(self):
+        assert mc.resign()

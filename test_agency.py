@@ -1,37 +1,53 @@
-import Logic.common
-import Logic.agency
-import test_data
+import pytest
 from configuration import webDriver
+import Logic.common as cm
+import Logic.agency as ac
+import testData.test_data as test_data
 
-webDriver.cal()
+class Test_KakaoAgency:
+    @pytest.fixture
+    def setup(self):
+        pass
 
-try:
-    Logic.agency.intoAgency()
-    Logic.common.kakaoLoginClick()
-    Logic.common.kakaoLoginLogic(test_data.sign_kakao[0])
-    Logic.agency.confirmAgency(test_data.agency_biz_no[0])
-    Logic.common.recordPassResult(('//main/div/div[1]/div/div[2]/div/p'), '누적회원가입수', 'login', 2, 4)
-    Logic.agency.resign()
-except Exception as e:
-    Logic.common.recordFailResult(('//main/div/div[1]/div/div[2]/div/p'), '누적회원가입수','login', 2, 4)
-    pass
+    def test_startApp(self):
+        assert webDriver.cal()
 
-webDriver.wd.close()
-webDriver.wd.launch()
+    def test_intoMerchant(self):
+        assert ac.intoAgency()
 
-try:
-    Logic.agency.intoAgency()
-    Logic.common.phoneNumberLoginclick()
-    #sign_phone(name, email, phonenumber)
-    Logic.common.phoneNumberLoginLogic(test_data.sign_phone[0])
-    print((test_data.sign_phone[0]))
-    #agency_biz_no (biz_no1, biz_no2)
-    Logic.agency.confirmAgency(test_data.agency_biz_no[0])
-    print(test_data.agency_biz_no[0])
-    Logic.common.recordPassResult(('//main/div/div[1]/div/div[2]/div/p'), '누적회원가입수', 'login', 2, 5)
-    Logic.agency.resign()
-except Exception as e:
-    Logic.common.recordFailResult(('//main/div/div[1]/div/div[2]/div/p'), '누적회원가입수', 'login', 2, 5)
-    pass
+    def test_kakao(self):
+        assert cm.kakaoLoginClick()
+        assert cm.kakaoLoginLogic(test_data.sign_kakao[0])
 
-webDriver.wd.quit()
+    def test_confirmAgency(self):
+        assert ac.confirmAgency(test_data.agency_biz_no[0])
+
+    def test_recordExcel(self):
+        assert cm.recordResult(('//main/div/div[1]/div/div[2]/div/p'), '누적회원가입수', 'login', 2, 4)
+
+    def test_resign(self):
+        assert ac.resign()
+
+class Test_PhoneAgency:
+    @pytest.fixture
+    def setup(self):
+        pass
+
+    def test_startApp(self):
+        assert webDriver.cal()
+
+    def test_intoMerchant(self):
+        assert ac.intoAgency()
+
+    def test_phoneLogin(self):
+        assert cm.phoneNumberLoginclick()
+        assert cm.phoneNumberLoginLogic(test_data.sign_phone[0])
+
+    def test_confirmAgency(self):
+        assert ac.confirmAgency(test_data.agency_biz_no[0])
+
+    def test_recordExcel(self):
+        assert cm.recordResult(('//main/div/div[1]/div/div[2]/div/p'), '누적회원가입수', 'login', 2, 5)
+
+    def test_resign(self):
+        assert ac.resign()

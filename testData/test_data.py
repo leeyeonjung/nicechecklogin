@@ -16,11 +16,3 @@ agency_biz_no=makeDataList(2,4,1,3,data[3])
 # print(sign_kakao)
 # print(merchant_biz_no)
 # print(agency_biz_no)
-
-
-# a=6
-# try:
-#     정상 구문
-# except Exception as e:
-#     fail 구문
-#     pass

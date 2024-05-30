@@ -124,11 +124,8 @@ def kakaoLoginLogic(sign_kakao):
 
     time.sleep(1.0)
 
-def recordPassResult(result1, result2, tc, rownum, columnnum):
+def recordResult(result1, result2, tc, rownum, columnnum):
     if WebDriverWait(webDriver.wd, 3).until(EC.presence_of_element_located((By.XPATH, result1))) == result2:
          utilities.ExcelUtils.writeData(file_path,'result', rownum, columnnum, (tc + ' pass ' + (datetime.now().strftime("%Y-%m-%d %H:%M:%S"))))
     else:
-         utilities.ExcelUtils.writeData(file_path,'result', rownum, columnnum, (tc + 'fail ' + (datetime.now().strftime("%Y-%m-%d %H:%M:%S"))))
-
-def recordFailResult(result1, result2, tc, rownum, columnnum):
-    return utilities.ExcelUtils.writeData(file_path,'result', rownum, columnnum, (tc + 'fail ' + (datetime.now().strftime("%Y-%m-%d %H:%M:%S")))) 
+         utilities.ExcelUtils.writeData(file_path,'result', rownum, columnnum, (tc + ' fail ' + (datetime.now().strftime("%Y-%m-%d %H:%M:%S"))))
