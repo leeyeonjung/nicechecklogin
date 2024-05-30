@@ -1,25 +1,19 @@
-# import pytest
-
-# class TestReports:
-#     @pytest.fixture
-#     def setup(self):
-#         pass
-#     def test_1(self):
-#         assert True
-#     def test_2(self):
-#         assert 3 == 4
-#     def test_3(self):
-#         assert 3!=5
-
 import pytest
-from configuration import webDriver
-import Logic.common as cm
 
 class TestReports:
     @pytest.fixture
     def setup(self):
         pass
+
     def test_1(self):
-        assert webDriver.cal()
+        assert (3+4==7)
+
     def test_2(self):
-        assert cm.phoneNumberLoginclick()
+        a = (8-8)
+        assert 5 / a == 1
+
+    def test_3(self):
+        assert (1+3) == 5
+
+    def test_4(self):
+        assert 3*4 == 12

@@ -5,9 +5,9 @@ from appium.options.android import UiAutomator2Options
 capabilities = {
   "platformName": "Android",
   "appium:automationName": "uiautomator2",
-  "appium:deviceName": "R3CX209SA3N",
-  "appium:appPackage": "com.torder.ceo",
-  "appium:appActivity": "com.torder.ceo.MainActivity",
+  "appium:deviceName": "R3CT801BSEM",
+  "appium:appPackage": "com.torder.ceoapp",
+  "appium:appActivity": "com.torder.ceoapp.MainActivity",
   "appium:autoGrantPermissions": "true", #권한 전체 자동 허용
   "appium:noreset": "true" #App data no reset
   # "autoWebview": "true" #자동 웹뷰 열기
@@ -32,13 +32,3 @@ def id(data):
 #webDriver.wd.launch_app() / 앱 백그라운드에서 재시작
 #webDriver.wd.reset() 
 # ['NATIVE_APP', 'WEBVIEW_kr.co.nicevan.bujaapp']
-
-
-import pytest
-
-class TestReports:
-    @pytest.fixture
-    def setup(self):
-        pass
-    def test_1(self):
-        assert cal()
