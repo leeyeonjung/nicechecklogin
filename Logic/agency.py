@@ -50,7 +50,7 @@ def resign():
     time.sleep(0.5)
 
     #회원탈퇴
-    webDriver.xpath('//ul/li[5]').click()
+    webDriver.xpath('//main/div[3]/div[5]/h5').click()
 
     #탈퇴사유 입력란
     webDriver.xpath('//textarea').send_keys('test')

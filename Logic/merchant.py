@@ -74,7 +74,7 @@ def resign():
     time.sleep(0.5)
 
     #탈퇴 모달 팝업 선택
-    webDriver.xpath('//ul/li[5]').click()
+    webDriver.xpath('//main/div[3]/div[5]/h5').click()
     time.sleep(0.5)
 
     #탈퇴사유 입력란

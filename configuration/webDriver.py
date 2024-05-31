@@ -6,8 +6,8 @@ capabilities = {
   "platformName": "Android",
   "appium:automationName": "uiautomator2",
   "appium:deviceName": "R3CT801BSEM",
-  "appium:appPackage": "com.torder.ceoapp",
-  "appium:appActivity": "com.torder.ceoapp.MainActivity",
+  "appium:appPackage": "kr.co.nicevan.bujaapp",
+  "appium:appActivity": "kr.co.nicevan.bujaapp.MainActivity",
   "appium:autoGrantPermissions": "true", #권한 전체 자동 허용
   "appium:noreset": "true" #App data no reset
   # "autoWebview": "true" #자동 웹뷰 열기
