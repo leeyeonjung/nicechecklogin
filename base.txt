@@ -1,4 +1,0 @@
-1.이미지 비교 파일 경로 변경
-2.엑셀 파일 내용 delete
-3.이미지 베이스 변경
-4.Chromedriver version 확인
