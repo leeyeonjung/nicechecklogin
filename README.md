@@ -9,7 +9,6 @@ Python 3.12.2</br>
 Selenium Version: 4.19.0
 
 </br>
-</br>
 
 ## ✅ 어떻게 구현 했는지?
 ​
@@ -22,7 +21,6 @@ Selenium Version: 4.19.0
 - ### 실행방식
   - pytest 를 통해 test 코드로 구현 되어 있는 부분을 실행 후, HTML 형식으로 Report 확인 가능 합니다.
 
-</br>
 </br>
 ​
 ## ✅ 구현하는 과정에서 어려웠던 점
@@ -37,7 +35,6 @@ Selenium Version: 4.19.0
     3. 특정 API 값 <br />
 
 </br>
-</br>
 ​
 ## ✅ 이번 프로젝트를 통해 새로 배운 점
 ​
@@ -48,10 +45,9 @@ Selenium Version: 4.19.0
     Pytest-Html Library 를 통한 HTML Report 출력 방법에 대해 배웠습니다.
   
 </br>
-</br>
 ​
 ## ✅ 내가 구현한 것 중에서 가장 잘했다고 생각하는 점(어필 포인트)
 
  이미지 비교, 특정 문구 노출처럼 단순 코드 실행만이 아닌 여러가지 Pass와 Fail의 기준에 대해 고려하였고 그를 구현해 내었습니다.
-</br>
+
 </br>
