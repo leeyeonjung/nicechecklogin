@@ -11,9 +11,6 @@ Appium Version 2.5.1</br>
 Appium-Python-Client 4.0.0</br>
 Python 3.12.2</br>
 Selenium Version: 4.19.0
-
-</br>
-</br>
 </br>
 </br>
 
