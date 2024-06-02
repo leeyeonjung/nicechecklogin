@@ -1,16 +1,14 @@
 # ☕️ niceCheck Automation Login Code
-
 </br>
 </br>
 </br>
-
 ## 📎프로젝트 소개
-Appium, Selenium, Python을 이용하여 코드를 작성하였고 Pytest를 이용하여 test 코드를 실행 후 Pytest-Html 라이브러리를 이용하여 HTML 형식으로 Report를 확인할 수 있게 진행하였습니다.
-
+Appium, Selenium, Python을 이용하여 코드를 작성하였고 Pytest를 이용하여 test 코드를 실행 후 Pytest-Html 라이브러리를 이용하여 HTML 형식으로 Report를 확인할 수 있게 진행하였습니다.</br>
 Appium Version 2.5.1</br>
 Appium-Python-Client 4.0.0</br>
 Python 3.12.2</br>
 Selenium Version: 4.19.0
+
 </br>
 </br>
 
@@ -26,7 +24,7 @@ Selenium Version: 4.19.0
   - pytest 를 통해 test 코드로 구현 되어 있는 부분을 실행 후, HTML 형식으로 Report 확인 가능 합니다.
 
 </br>
-
+</br>
 ​
 ## ✅ 구현하는 과정에서 어려웠던 점
 ​
@@ -40,7 +38,7 @@ Selenium Version: 4.19.0
     3. 특정 API 값 <br />
 
 </br>
-
+</br>
 ​
 ## ✅ 이번 프로젝트를 통해 새로 배운 점
 ​
@@ -49,15 +47,12 @@ Selenium Version: 4.19.0
 ​
   - Report <br />
     Pytest-Html Library 를 통한 HTML Report 출력 방법에 대해 배웠습니다.
+  
 </br>
-
+</br>
 ​
 ## ✅ 내가 구현한 것 중에서 가장 잘했다고 생각하는 점(어필 포인트)
-</br>
 
-​
  이미지 비교, 특정 문구 노출처럼 단순 코드 실행만이 아닌 여러가지 Pass와 Fail의 기준에 대해 고려하였고 그를 구현해 내었습니다.
 </br>
 </br>
-</br>
-
