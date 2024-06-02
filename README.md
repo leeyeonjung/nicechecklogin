@@ -1,7 +1,8 @@
 # ☕️ niceCheck Automation Login Code
 </br>
 ## 📎프로젝트 소개
-Appium, Selenium, Python을 이용하여 코드를 작성하였고 Pytest를 이용하여 test 코드를 실행 후 Pytest-Html 라이브러리를 이용하여 HTML 형식으로 Report를 확인할 수 있게 진행하였습니다.</br>
+Appium, Selenium, Python을 이용하여 코드를 작성하였고 Pytest를 이용하여 test 코드를 실행 후 Pytest-Html 라이브러리를 이용하여 HTML 형식으로 Report를 확인할 수 있게 진행하였습니다.
+
 Appium Version 2.5.1</br>
 Appium-Python-Client 4.0.0</br>
 Python 3.12.2</br>
